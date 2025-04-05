@@ -7,18 +7,17 @@ local M = {
       "echasnovski/mini.icons",
     },
   }
-  
+
   function M.config()
     local alpha = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
-    local icons = require("mini.icons")
-  
+
     local function button(sc, txt, keybind, keybind_opts)
       local b = dashboard.button(sc, txt, keybind, keybind_opts)
       b.opts.hl_shortcut = "Include"
       return b
     end
-  
+
     dashboard.section.header.val = {
             "",
             "",
@@ -35,7 +34,7 @@ local M = {
             "",
             "",
     }
-  
+
     dashboard.section.buttons.val = {
       button("e", "  New File", "<cmd>ene <BAR> startinsert<CR>"),
       button("f", "󰱼  Find File", "<cmd>Telescope find_files<CR>"),
@@ -46,27 +45,27 @@ local M = {
       button("c", "  Config", "<cmd>edit ~/.config/nvim/init.lua<CR>"),
       button("q", "  Quit", "<cmd>qa<CR>"),
     }
-  
+
     dashboard.section.footer.val = function()
       local stats = require("lazy").stats()
       local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
       return "⚡ Loaded " .. stats.count .. " plugins in " .. ms .. "ms"
     end
-  
+
     dashboard.section.header.opts.hl = "Keyword"
     dashboard.section.buttons.opts.hl = "Include"
     dashboard.section.footer.opts.hl = "Type"
-  
+
     dashboard.opts.opts.noautocmd = true
     alpha.setup(dashboard.opts)
-  
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "LazyVimStarted",
       callback = function()
         pcall(vim.cmd.AlphaRedraw)
       end,
     })
-  
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "AlphaReady",
       callback = function()
@@ -74,6 +73,6 @@ local M = {
       end,
     })
   end
-  
+
   return M
-  
+

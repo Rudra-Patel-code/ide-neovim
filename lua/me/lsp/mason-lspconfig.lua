@@ -9,14 +9,22 @@ local M = {
 }
 
 function M.config()
+ require("mason").setup()
   local mason_lspconfig = require("mason-lspconfig")
+    local navic = require("nvim-navic")
+
+    local on_attach = function (client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+            navic.attach(client, bufnr)
+        end
+    end
 
   mason_lspconfig.setup({
     -- Automatically install these LSP servers if they're not already installed
     ensure_installed = {
       "lua_ls",
       "pyright",
-      "typescript-language-server",
+      "ts_ls",
       "html",
       "cssls",
       "jsonls",
@@ -32,12 +40,15 @@ function M.config()
     handlers = {
       -- Default handler (applies to all servers)
       function(server_name)
-        require("lspconfig")[server_name].setup({})
+        require("lspconfig")[server_name].setup({
+                    on_attach = on_attach,
+                })
       end,
 
       -- Example: Customize Lua LS settings
       ["lua_ls"] = function()
         require("lspconfig").lua_ls.setup({
+                    on_attach = on_attach,
           settings = {
             Lua = {
               diagnostics = {

@@ -20,15 +20,12 @@ local M = {
       },
       exclude = {}, -- filetypes to exclude
     },
-    config = function(_, opts)
-      
-    end,
-  }
+    }
 
 
-function M.config()
+function M.config(_, opts)
   require("twilight").setup(opts)
-  
+
       -- Register which-key for Twilight toggle
       local wk = require("which-key")
 
@@ -39,6 +36,6 @@ function M.config()
         },
       }, { mode = "n" })
     end
-  
+
   return M
-  
+

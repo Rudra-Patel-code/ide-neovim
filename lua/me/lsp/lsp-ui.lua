@@ -1,6 +1,7 @@
 
 
 local M = {
+  -- Live rename with preview
   {
     "smjonas/inc-rename.nvim",
     event = "LspAttach",
@@ -34,13 +35,6 @@ local M = {
   },
 
   -- Virtual inlay types (inferred types)
-  {
-    "jubnzv/virtual-types.nvim",
-    event = "LspAttach",
-    config = function()
-      require("virtual-types").setup({}) -- Uses defaults
-    end,
-  },
 }
 
 return M
