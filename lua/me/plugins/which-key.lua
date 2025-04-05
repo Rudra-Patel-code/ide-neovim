@@ -104,6 +104,5 @@ return {
 				w = { "<cmd>FormatWrite<cr>", "Format & Save" },
 			},
 		})
-
 	end,
 }

@@ -13,7 +13,6 @@ local M = {
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         python = { "flake8" },
-        lua = { "luacheck" },
         markdown = { "markdownlint" },
         sh = { "shellcheck" },
       }
