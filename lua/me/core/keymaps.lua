@@ -46,3 +46,4 @@ map("v", ">", ">gv", default_opts)
 
 -- Save file with Ctrl + S in all modes
 map({ "n", "i", "v" }, "<C-s>", "<Esc>:w<CR>", { desc = "Save file" })
+

@@ -27,6 +27,7 @@ spec "me.plugins.debug"
 spec "me.plugins.git"
 spec "me.plugins.todo"
 spec "me.plugins.flash-leap"
+spec "me.plugins.formatting"
 
 spec "me.lsp.mason-lspconfig"
 spec "me.lsp.lsp-signature"
