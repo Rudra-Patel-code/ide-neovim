@@ -53,3 +53,5 @@ opt.mouse = 'a'               -- Enable mouse in all modes
 
 -- Completion behavior
 opt.completeopt = {'menu', 'menuone', 'noselect'} -- Better auto-completion experience
+
+opt.sessionoptions:append("localoptions")

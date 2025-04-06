@@ -9,7 +9,11 @@ local M = {
 }
 
 function M.config()
- require("mason").setup()
+ require("mason").setup({
+        ui = {
+            border = "rounded"
+        }
+    })
   local mason_lspconfig = require("mason-lspconfig")
     local navic = require("nvim-navic")
 

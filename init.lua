@@ -4,6 +4,8 @@ require("me.core.keymaps")
 
 spec("me.plugins.extras")
 spec("me.plugins.mini")
+spec("me.plugins.mini-animate")
+spec("me.plugins.indentscope")
 -- TODO: this si great
 
 spec("me.plugins.barbecue")
@@ -29,7 +31,9 @@ spec("me.plugins.todo")
 spec("me.plugins.flash-leap")
 spec("me.plugins.formatting")
 spec("me.plugins.projects")
+spec("me.plugins.session-lens")
 spec("me.plugins.auto-session")
+spec("me.plugins.toggle-term")
 
 spec("me.lsp.mason-lspconfig")
 spec("me.lsp.lsp-signature")

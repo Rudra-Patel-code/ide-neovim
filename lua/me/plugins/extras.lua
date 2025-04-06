@@ -12,25 +12,25 @@ local M = {
 		end,
 	},
 
-	{
-		"declancm/cinnamon.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("cinnamon").setup({
-				keymaps = {
-					basic = true, -- replaces deprecated 'default_keymaps'
-					extra = true, -- replaces 'extra_keymaps' and 'extended_keymaps'
-				},
-				options = {
-					mode = "window",
-					max_delta = {
-						time = 500, -- replaces 'max_length'
-						line = 150, -- replaces 'scroll_limit'
-					},
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"declancm/cinnamon.nvim",
+	-- 	event = "VeryLazy",
+	-- 	config = function()
+	-- 		require("cinnamon").setup({
+	-- 			keymaps = {
+	-- 				basic = true, -- replaces deprecated 'default_keymaps'
+	-- 				extra = true, -- replaces 'extra_keymaps' and 'extended_keymaps'
+	-- 			},
+	-- 			options = {
+	-- 				mode = "window",
+	-- 				max_delta = {
+	-- 					time = 500, -- replaces 'max_length'
+	-- 					line = 150, -- replaces 'scroll_limit'
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 }
 
 return M
