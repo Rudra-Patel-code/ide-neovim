@@ -15,21 +15,15 @@ function M.config()
   -- 🧲 Gitsigns setup
   require("gitsigns").setup({
     signs = {
-      add          = { text = "+" },
-      change       = { text = "~" },
-      delete       = { text = "_" },
-      topdelete    = { text = "‾" },
-      changedelete = { text = "~" },
+      add = { text = "┃" },
+      change = { text = "┋" },
+      delete = { text = "" },
+      topdelete = { text = "" },
+      changedelete = { text = "┃" },
     },
     signcolumn = true,
     numhl = false,
     linehl = false,
-    word_diff = false,
-    watch_gitdir = {
-      interval = 1000,
-      follow_files = true,
-    },
-    attach_to_untracked = true,
     current_line_blame = true,
     current_line_blame_opts = {
       virt_text = true,
@@ -37,6 +31,8 @@ function M.config()
       delay = 100,
       ignore_whitespace = false,
     },
+    current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
+    update_debounce = 200,
     preview_config = {
       border = "rounded",
       style = "minimal",
@@ -44,6 +40,28 @@ function M.config()
       row = 0,
       col = 1,
     },
+    on_attach = function(bufnr)
+      local gs = package.loaded.gitsigns
+      local function map(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+      end
+
+    --   map("n", "]h", gs.next_hunk, "Next Hunk")
+    --   map("n", "[h", gs.prev_hunk, "Prev Hunk")
+    --   map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")
+    --   map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
+    --   map("v", "<leader>hs", function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, "Stage Hunk")
+    --   map("v", "<leader>hr", function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end, "Reset Hunk")
+    --   map("n", "<leader>hS", gs.stage_buffer, "Stage Buffer")
+    --   map("n", "<leader>hR", gs.reset_buffer, "Reset Buffer")
+    --   map("n", "<leader>hu", gs.undo_stage_hunk, "Undo Stage Hunk")
+    --   map("n", "<leader>hp", gs.preview_hunk, "Preview Hunk")
+    --   map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, "Blame Line (Full)")
+    --   map("n", "<leader>hB", gs.toggle_current_line_blame, "Toggle Blame Line")
+    --   map("n", "<leader>hd", gs.diffthis, "Diff This")
+    --   map("n", "<leader>hD", function() gs.diffthis("~") end, "Diff This ~")
+    --   map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Select Hunk")
+    end,
   })
 
   -- 🧰 Neogit setup

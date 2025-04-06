@@ -64,14 +64,14 @@ function M.config()
   end
 
   -- Keymaps
-  local map = vim.keymap.set
-  map("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal (float)" })
-  map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Toggle vertical terminal" })
-  map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle horizontal terminal" })
-  map("n", "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Toggle Lazygit" })
-  map("n", "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", { desc = "Toggle Node REPL" })
-  map("n", "<leader>tp", "<cmd>lua _PYTHON_TOGGLE()<CR>", { desc = "Toggle Python REPL" })
-  map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal mode to normal mode" })
+  -- local map = vim.keymap.set
+  -- map("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal (float)" })
+  -- map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Toggle vertical terminal" })
+  -- map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle horizontal terminal" })
+  -- map("n", "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Toggle Lazygit" })
+  -- map("n", "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", { desc = "Toggle Node REPL" })
+  -- map("n", "<leader>tp", "<cmd>lua _PYTHON_TOGGLE()<CR>", { desc = "Toggle Python REPL" })
+  -- map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal mode to normal mode" })
 end
 
 return M

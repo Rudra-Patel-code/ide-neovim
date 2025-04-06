@@ -13,10 +13,10 @@ local M = {
       auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
     })
 
-    -- Session telescope integration (optional)
-    vim.keymap.set("n", "<leader>ss", require("auto-session.session-lens").search_session, {
-      desc = "Search Sessions",
-    })
+    -- -- Session telescope integration (optional)
+    -- vim.keymap.set("n", "<leader>ss", require("auto-session.session-lens").search_session, {
+    --   desc = "Search Sessions",
+    -- })
   end,
 }
 

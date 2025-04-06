@@ -18,8 +18,8 @@ function M.config()
 
 		view = {
 			width = 30,
-			relativenumber = true,
-			signcolumn = "yes",
+			relativenumber = false,
+			signcolumn = "no",
 		},
 
 		renderer = {
@@ -92,26 +92,26 @@ function M.config()
 	-- 	end,
 	-- }) -- Keymaps
 
-	local map = vim.keymap.set
-	local opts = { noremap = true, silent = true, desc = "[NvimTree]" }
+	-- local map = vim.keymap.set
+	-- local opts = { noremap = true, silent = true, desc = "[NvimTree]" }
 
-	map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", vim.tbl_extend("force", opts, { desc = "Toggle Explorer" }))
-	map(
-		"n",
-		"<leader>ef",
-		"<cmd>NvimTreeFindFileToggle<CR>",
-		vim.tbl_extend("force", opts, { desc = "Find Current File" })
-	)
-	map("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", vim.tbl_extend("force", opts, { desc = "Refresh Explorer" }))
-	map("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", vim.tbl_extend("force", opts, { desc = "Collapse Explorer" }))
+	-- map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", vim.tbl_extend("force", opts, { desc = "Toggle Explorer" }))
+	-- map(
+	-- 	"n",
+	-- 	"<leader>ef",
+	-- 	"<cmd>NvimTreeFindFileToggle<CR>",
+	-- 	vim.tbl_extend("force", opts, { desc = "Find Current File" })
+	-- )
+	-- map("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", vim.tbl_extend("force", opts, { desc = "Refresh Explorer" }))
+	-- map("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", vim.tbl_extend("force", opts, { desc = "Collapse Explorer" }))
 
 	-- Force solid background for nvim-tree even with transparent theme
 	-- vim.defer_fn(function()
 	-- 	vim.cmd([[
- --    highlight! NvimTreeNormal guibg=#1e222a
- --    highlight! NvimTreeNormalNC guibg=#1e222a
- --    highlight! NvimTreeEndOfBuffer guibg=#1e222a
- --  ]])
+	--    highlight! NvimTreeNormal guibg=#1e222a
+	--    highlight! NvimTreeNormalNC guibg=#1e222a
+	--    highlight! NvimTreeEndOfBuffer guibg=#1e222a
+	--  ]])
 	-- end, 100)
 	--
 end

@@ -77,36 +77,36 @@ function M.config()
 --  telescope.load_extension("cheat")
 
   -- Keymaps
-  local wk = require("which-key")
-  wk.register({
-    ["<leader>f"] = {
-      name = "+find",
-      f = { "<cmd>Telescope find_files<cr>", "Files" },
-      r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
-      s = { "<cmd>Telescope live_grep<cr>", "String Grep" },
-      c = { "<cmd>Telescope grep_string<cr>", "Grep Under Cursor" },
-      b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-      h = { "<cmd>Telescope help_tags<cr>", "Help" },
-      l = { "<cmd>Telescope resume<cr>", "Last Picker" },
-      t = { "<cmd>TodoTelescope<cr>", "Todos" },
-      p = { "<cmd>Telescope project<cr>", "Projects" },
-      e = { "<cmd>Telescope file_browser<cr>", "File Browser" },
-      C = { "<cmd>Telescope cheatsheet<cr>", "Cheatsheet" },
-    },
-    ["<leader>g"] = {
-      name = "+git",
-      s = { "<cmd>Telescope git_status<cr>", "Status" },
-      b = { "<cmd>Telescope git_branches<cr>", "Branches" },
-      c = { "<cmd>Telescope git_commits<cr>", "Commits" },
-    },
-    ["<leader>l"] = {
-      name = "+lsp",
-      r = { "<cmd>Telescope lsp_references<cr>", "References" },
-      d = { "<cmd>Telescope lsp_definitions<cr>", "Definitions" },
-      i = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },
-      t = { "<cmd>Telescope lsp_type_definitions<cr>", "Type Defs" },
-    },
-  })
+  -- local wk = require("which-key")
+  -- wk.register({
+  --   ["<leader>f"] = {
+  --     name = "+find",
+  --     f = { "<cmd>Telescope find_files<cr>", "Files" },
+  --     r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
+  --     s = { "<cmd>Telescope live_grep<cr>", "String Grep" },
+  --     c = { "<cmd>Telescope grep_string<cr>", "Grep Under Cursor" },
+  --     b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+  --     h = { "<cmd>Telescope help_tags<cr>", "Help" },
+  --     l = { "<cmd>Telescope resume<cr>", "Last Picker" },
+  --     t = { "<cmd>TodoTelescope<cr>", "Todos" },
+  --     p = { "<cmd>Telescope project<cr>", "Projects" },
+  --     e = { "<cmd>Telescope file_browser<cr>", "File Browser" },
+  --     C = { "<cmd>Telescope cheatsheet<cr>", "Cheatsheet" },
+  --   },
+  --   ["<leader>g"] = {
+  --     name = "+git",
+  --     s = { "<cmd>Telescope git_status<cr>", "Status" },
+  --     b = { "<cmd>Telescope git_branches<cr>", "Branches" },
+  --     c = { "<cmd>Telescope git_commits<cr>", "Commits" },
+  --   },
+  --   ["<leader>l"] = {
+  --     name = "+lsp",
+  --     r = { "<cmd>Telescope lsp_references<cr>", "References" },
+  --     d = { "<cmd>Telescope lsp_definitions<cr>", "Definitions" },
+  --     i = { "<cmd>Telescope lsp_implementations<cr>", "Implementations" },
+  --     t = { "<cmd>Telescope lsp_type_definitions<cr>", "Type Defs" },
+  --   },
+  -- })
 end
 
 return M

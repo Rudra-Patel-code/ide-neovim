@@ -2,11 +2,13 @@ require("me.launch")
 require("me.core.options")
 require("me.core.keymaps")
 
+
 spec("me.plugins.extras")
 spec("me.plugins.mini")
+
+
 spec("me.plugins.mini-animate")
 spec("me.plugins.indentscope")
--- TODO: this si great
 
 spec("me.plugins.barbecue")
 spec("me.plugins.which-key")
@@ -27,13 +29,14 @@ spec("me.plugins.editing")
 spec("me.plugins.debug")
 spec("me.plugins.git")
 spec("me.plugins.todo")
-spec("me.plugins.flash-leap")
+-- spec("me.plugins.flash-leap")
 spec("me.plugins.formatting")
 spec("me.plugins.projects")
 spec("me.plugins.auto-session")
-spec("me.plugins.session-lens")
 spec("me.plugins.toggle-term")
 spec("me.plugins.alpha")
+spec("me.plugins.fidget")
+spec("me.plugins.ufo")
 
 spec("me.lsp.mason-lspconfig")
 spec("me.lsp.lsp-signature")
@@ -41,4 +44,6 @@ spec("me.lsp.cmp")
 spec("me.lsp.lsp-ui")
 spec("me.lsp.treesitter")
 
+
+require("me.all")
 require("me.lazy")

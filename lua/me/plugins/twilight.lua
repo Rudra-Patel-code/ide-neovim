@@ -27,14 +27,14 @@ function M.config(_, opts)
   require("twilight").setup(opts)
 
       -- Register which-key for Twilight toggle
-      local wk = require("which-key")
-
-      wk.register({
-        ["<leader>u"] = {
-          name = "+ui",
-          t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-        },
-      }, { mode = "n" })
+    --   local wk = require("which-key")
+    --
+    --   wk.register({
+    --     ["<leader>u"] = {
+    --       name = "+ui",
+    --       t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
+    --     },
+    --   }, { mode = "n" })
     end
 
   return M
