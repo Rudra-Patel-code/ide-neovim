@@ -1,3 +1,4 @@
+
 -- alpha.lua
 local M = {
 	"goolord/alpha-nvim",
@@ -7,15 +8,12 @@ local M = {
 		"echasnovski/mini.icons",
 		"rmagatti/auto-session",
 		"nvim-telescope/telescope.nvim",
-		"rmagatti/session-lens",
 	},
 }
 
 function M.config()
 	local alpha = require("alpha")
 	local dashboard = require("alpha.themes.dashboard")
-	local telescope = require("telescope")
-	local builtin = require("telescope.builtin")
 
 	local function current_session_name()
 		local cwd = vim.fn.getcwd()
@@ -50,7 +48,7 @@ function M.config()
 		local sessions = {}
 		if handle then
 			while true do
-				local name, t = vim.loop.fs_scandir_next(handle)
+				local name = vim.loop.fs_scandir_next(handle)
 				if not name then
 					break
 				end
@@ -102,7 +100,6 @@ function M.config()
 				vim.notify("No session found for this directory.", vim.log.levels.WARN, { title = "Session" })
 			end
 		end),
-		button("l", "  List Sessions", "<cmd>SearchSession<CR>"),
 		button("d", "  Delete Session", function()
 			local session_name = current_session_name()
 			if session_name then
@@ -169,11 +166,7 @@ function M.config()
 			end
 		end,
 	})
-
-	pcall(function()
-		telescope.load_extension("session-lens")
-	end)
-	vim.cmd([[command! SearchSession lua require('telescope').extensions.session-lens.search_session()]])
 end
 
 return M
+
