@@ -21,7 +21,6 @@ map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Toggl
 map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle horizontal terminal" })
 map("n", "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Toggle Lazygit" })
 map("n", "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", { desc = "Toggle Node REPL" })
-map("n", "<leader>tp", "<cmd>lua _PYTHON_TOGGLE()<CR>", { desc = "Toggle Python REPL" })
 map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal mode to normal mode" })
 
 -- ╭──────────────────────────────╮
@@ -29,8 +28,8 @@ map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal mode to normal mode" })
 -- ╰──────────────────────────────╯
 map({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
 map({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
-map("o", "r", function() require("flash").remote() end, { desc = "Remote Flash" })
-map({ "o", "x" }, "R", function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
+map("o", "<leader>jr", function() require("flash").remote() end, { desc = "Remote Flash" })
+map({ "o", "x" }, "<leader>jR", function() require("flash").treesitter_search() end, { desc = "Treesitter Search" })
 map("c", "<C-s>", function() require("flash").toggle() end, { desc = "Toggle Flash Search" })
 map({ 'n', 'x', 'o' }, 'ga', function() require('leap.treesitter').select() end, { desc = "Leap Treesitter Select" })
 map({ 'n', 'x', 'o' }, 'gA', 'V<cmd>lua require("leap.treesitter").select()<cr>', { desc = "Leap Treesitter Select Linewise" })
@@ -126,10 +125,6 @@ local dapui_status_ok, dapui = pcall(require, "dapui")
 if dapui_status_ok then
     map("n", "<leader>dt", require("dapui").toggle, { desc = "Toggle DAP UI" })
 end
--- ╭──────────────────────────────╮
--- │ plugins/zen-mode.lua         │
--- ╰──────────────────────────────╯
-map("n", "<leader>z", "<cmd>ZenMode<cr>", { desc = "Toggle Zen Mode" })
 
 -- ╭──────────────────────────────╮
 -- │ plugins/twilight.lua         │
@@ -140,16 +135,16 @@ map("n", "<leader>ut", "<cmd>Twilight<cr>", { desc = "Toggle Twilight" })
 -- ╭──────────────────────────────╮
 -- │ plugins/editing.lua          │
 -- ╰──────────────────────────────╯
-map("n", "s", function() require("substitute").operator() end, { noremap = true, desc = "Substitute with motion" })
-map("n", "ss", function() require("substitute").line() end, { noremap = true, desc = "Substitute entire line" })
-map("n", "S", function() require("substitute").eol() end, { noremap = true, desc = "Substitute to end of line" })
-map("x", "s", function() require("substitute").visual() end, { noremap = true, desc = "Substitute in visual mode" })
-map("n", "sx", function() require("substitute.exchange").operator() end, { noremap = true, desc = "Exchange with motion" })
-map("n", "sxx", function() require("substitute.exchange").line() end, { noremap = true, desc = "Exchange line" })
-map("x", "X", function() require("substitute.exchange").visual() end, { noremap = true, desc = "Exchange visual selection" })
-map("n", "sxc", function() require("substitute.exchange").cancel() end, { noremap = true, desc = "Cancel exchange" })
+map("n", "<leader>s", function() require("substitute").operator() end, { noremap = true, desc = "Substitute with motion" })
+map("n", "<leader>ss", function() require("substitute").line() end, { noremap = true, desc = "Substitute entire line" })
+map("n", "<leader>S", function() require("substitute").eol() end, { noremap = true, desc = "Substitute to end of line" })
+map("x", "<leader>s", function() require("substitute").visual() end, { noremap = true, desc = "Substitute in visual mode" })
+map("n", "<leader>sx", function() require("substitute.exchange").operator() end, { noremap = true, desc = "Exchange with motion" })
+map("n", "<leader>sxx", function() require("substitute.exchange").line() end, { noremap = true, desc = "Exchange line" })
+map("x", "<leader>X", function() require("substitute.exchange").visual() end, { noremap = true, desc = "Exchange visual selection" })
+map("n", "<leader>sxc", function() require("substitute.exchange").cancel() end, { noremap = true, desc = "Cancel exchange" })
 
-
+-- 
 
 -- ╭──────────────────────────────╮
 -- │ plugins/git.lua          │

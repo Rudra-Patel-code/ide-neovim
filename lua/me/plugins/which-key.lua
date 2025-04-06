@@ -1,4 +1,6 @@
+-- File: lua/me/plugins/which-key.lu
 -- File: lua/me/plugins/which-key.lua
+-- Description: Complete which-key configuration with all keymaps registered (including all modes and plugins)
 
 return {
 	"folke/which-key.nvim",
@@ -24,85 +26,37 @@ return {
 		})
 
 		wk.register({
-			["<leader>"] = {
-				name = "+leader",
-				["nh"] = { ":nohl<CR>", "Clear search highlights" },
-				["+"] = { "<C-a>", "Increment number" },
-				["-"] = { "<C-x>", "Decrement number" },
-				["sv"] = { "<C-w>v", "Split window vertically" },
-				["sh"] = { "<C-w>s", "Split window horizontally" },
-				["se"] = { "<C-w>=", "Make splits equal size" },
-				["sx"] = { "<cmd>close<CR>", "Close current split" },
-				["to"] = { "<cmd>tabnew<CR>", "Open new tab" },
-				["tx"] = { "<cmd>tabclose<CR>", "Close current tab" },
-				["tn"] = { "<cmd>tabn<CR>", "Go to next tab" },
-				["tp"] = { "<cmd>tabp<CR>", "Go to previous tab" },
-				["tf"] = { "<cmd>tabnew %<CR>", "Open current buffer in new tab" },
-				u = {
-					name = "+ui",
-					t = { "<cmd>Twilight<cr>", "Toggle Twilight" },
-					z = { "<cmd>ZenMode<cr>", "Toggle Zen Mode" },
-				},
-			},
+			{ "<leader>e", group = "Explorer" },
+			{ "<leader>e", "<cmd>NvimTreeToggle<CR>", desc = "Toggle Explorer", mode = "n" },
+			{ "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Find Current File", mode = "n" },
+			{ "<leader>er", "<cmd>NvimTreeRefresh<CR>", desc = "Refresh Explorer", mode = "n" },
+			{ "<leader>ec", "<cmd>NvimTreeCollapse<CR>", desc = "Collapse Explorer", mode = "n" },
 		})
 
 		wk.register({
-			["<C-s>"] = { "<ESC>:w<CR>", "Save file" },
-		}, { mode = "n" })
-
-		wk.register({
-			["<C-s>"] = { "<ESC>:w<CR>", "Save file" },
-			["<"] = { "<gv", "Indent left and keep selection" },
-			[">"] = { ">gv", "Indent right and keep selection" },
-		}, { mode = "v" })
-
-		wk.register({
-			["<C-s>"] = { "<ESC>:w<CR>", "Save file" },
-			["jk"] = { "<ESC>", "Exit insert mode with jk" },
-		}, { mode = "i" })
-
-		wk.register({
-			["<leader>j"] = {
-				name = "+jump",
-				-- Leap
-				s = { "<Plug>(leap-forward)", "Leap Forward" },
-				S = { "<Plug>(leap-backward)", "Leap Backward" },
-				g = { "<Plug>(leap-from-window)", "Leap Other Window" },
-
-				-- Flash
-				f = {
-					function()
-						require("flash").jump()
-					end,
-					"Flash Jump",
-				},
-				t = {
-					function()
-						require("flash").treesitter()
-					end,
-					"Flash Treesitter",
-				},
-				r = {
-					function()
-						require("flash").remote()
-					end,
-					"Flash Remote (Op-pending)",
-				},
-				R = {
-					function()
-						require("flash").treesitter_search()
-					end,
-					"Flash Treesitter Search",
-				},
+			{ "<leader>t", group = "Tabs and Toggle Terminal" },
+			{ "<leader>to", "<cmd>tabnew<CR>", desc = "Open new tab", mode = "n" },
+			{ "<leader>tx", "<cmd>tabclose<CR>", desc = "Close current tab", mode = "n" },
+			{ "<leader>tn", "<cmd>tabn<CR>", desc = "Go to next tab", mode = "n" },
+			{ "<leader>tp", "<cmd>tabp<CR>", desc = "Go to previous tab", mode = "n" },
+			{ "<leader>tf", "<cmd>tabnew %<CR>", desc = "Open current buffer in new tab", mode = "m" },
+			{ "<leader>tt", "<cmd>ToggleTerm<CR>", desc = "Toggle terminal (float)", mode = "n" },
+			{ "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", desc = "Toggle vertical terminal", mode = "n" },
+			{
+				"<leader>th",
+				"<cmd>ToggleTerm direction=horizontal<CR>",
+				desc = "Toggle horizontal terminal",
+				mode = "n",
 			},
+			{ "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", desc = "Toggle Lazygit", mode = "n" },
+			{ "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", desc = "Toggle Node REPL", mode = "n" },
 		})
 
-		wk.register({
-			["<leader>F"] = {
-				name = "+format",
-				f = { "<cmd>Format<cr>", "Format buffer" },
-				w = { "<cmd>FormatWrite<cr>", "Format & Save" },
-			},
-		})
+
+        -- None leader key maps
+wk.register({{
+            			{ "<Esc>", [[<C-\><C-n>]], desc = "Terminal mode to normal mode", mode = "t" },
+
+        }})
 	end,
 }
