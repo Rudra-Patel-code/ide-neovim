@@ -19,7 +19,7 @@ map("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 map("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
-map("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+map("n", "<leader>sc", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- Navigate between window splits
 map("n", "<C-h>", "<C-w>h", default_opts)
@@ -47,3 +47,15 @@ map("v", ">", ">gv", default_opts)
 -- Save file with Ctrl + S in all modes
 map({ "n", "i", "v" }, "<C-s>", "<Esc>:w<CR>", { desc = "Save file" })
 
+
+
+-- Toggle virtual diagnostics
+local virtual_text_enabled = true
+
+vim.keymap.set("n", "<leader>td", function()
+  virtual_text_enabled = not virtual_text_enabled
+  vim.diagnostic.config({
+    virtual_text = virtual_text_enabled,
+  })
+  vim.notify("Virtual Diagnostics " .. (virtual_text_enabled and "Enabled" or "Disabled"))
+end, { desc = "Toggle Virtual Diagnostics" })

@@ -55,3 +55,21 @@ opt.mouse = 'a'               -- Enable mouse in all modes
 opt.completeopt = {'menu', 'menuone', 'noselect'} -- Better auto-completion experience
 
 opt.sessionoptions:append("localoptions")
+
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
+
+
+
+
+vim.api.nvim_create_autocmd("DirChanged", {
+  callback = function()
+    vim.fn.jobstart("eslint_d restart")
+  end,
+})
