@@ -1,4 +1,18 @@
+
 -- File: lua/me/plugins/formatting.lua
+
+local function prettier_4space()
+	return {
+		exe = "prettier",
+		args = {
+			"--stdin-filepath",
+			vim.api.nvim_buf_get_name(0),
+			"--tab-width", "4",
+			"--use-tabs", "false", -- set to "true" if you want actual tab characters
+		},
+		stdin = true,
+	}
+end
 
 local M = {
 	{
@@ -22,7 +36,7 @@ local M = {
 							".eslintrc.js",
 							".eslintrc.cjs",
 							".eslintrc.json",
-							"eslint.config.js", -- Flat config
+							"eslint.config.js",
 						}
 
 						local util = require("lint.util")
@@ -64,24 +78,23 @@ local M = {
 			require("formatter").setup({
 				logging = false,
 				filetype = {
-					javascript = { require("formatter.filetypes.javascript").prettier },
-					typescript = { require("formatter.filetypes.typescript").prettier },
-					javascriptreact = { require("formatter.filetypes.javascriptreact").prettier },
-					typescriptreact = { require("formatter.filetypes.typescriptreact").prettier },
-					css = { require("formatter.filetypes.css").prettier },
-					html = { require("formatter.filetypes.html").prettier },
-					json = { require("formatter.filetypes.json").prettier },
+					javascript = { prettier_4space },
+					typescript = { prettier_4space },
+					javascriptreact = { prettier_4space },
+					typescriptreact = { prettier_4space },
+					css = { prettier_4space },
+					html = { prettier_4space },
+					json = { prettier_4space },
 					lua = { require("formatter.filetypes.lua").stylua },
 					python = { require("formatter.filetypes.python").black },
 					sh = { require("formatter.filetypes.sh").shfmt },
-					markdown = { require("formatter.filetypes.markdown").prettier },
+					markdown = { prettier_4space },
 					["*"] = {
 						require("formatter.filetypes.any").remove_trailing_whitespace,
 					},
 				},
 			})
 
-			-- Format on save
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				pattern = "*",
 				command = "silent! FormatWrite",
@@ -91,3 +104,4 @@ local M = {
 }
 
 return M
+

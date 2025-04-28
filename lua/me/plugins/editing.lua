@@ -1,9 +1,3 @@
--- editing.lua
--- Plugin: numToStr/Comment.nvim
--- Plugin: kylechui/nvim-surround
--- Plugin: gbprod/substitute.nvim
--- Plugin: windwp/nvim-autopairs
-
 local M = {
 	{
 		"numToStr/Comment.nvim",
@@ -47,40 +41,6 @@ local M = {
 	},
 
 	{
-		"gbprod/substitute.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			local substitute = require("substitute")
-			substitute.setup({})
-
-			-- vim.keymap.set("n", "s", substitute.operator, { noremap = true, desc = "Substitute with motion" })
-			-- vim.keymap.set("n", "ss", substitute.line, { noremap = true, desc = "Substitute entire line" })
-			-- vim.keymap.set("n", "S", substitute.eol, { noremap = true, desc = "Substitute to end of line" })
-			-- vim.keymap.set("x", "s", substitute.visual, { noremap = true, desc = "Substitute in visual mode" })
-			--
-			-- vim.keymap.set(
-			-- 	"n",
-			-- 	"sx",
-			-- 	require("substitute.exchange").operator,
-			-- 	{ noremap = true, desc = "Exchange with motion" }
-			-- )
-			-- vim.keymap.set("n", "sxx", require("substitute.exchange").line, { noremap = true, desc = "Exchange line" })
-			-- vim.keymap.set(
-			-- 	"x",
-			-- 	"X",
-			-- 	require("substitute.exchange").visual,
-			-- 	{ noremap = true, desc = "Exchange visual selection" }
-			-- )
-			-- vim.keymap.set(
-			-- 	"n",
-			-- 	"sxc",
-			-- 	require("substitute.exchange").cancel,
-			-- 	{ noremap = true, desc = "Cancel exchange" }
-			-- )
-		end,
-	},
-
-	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
 		config = function()
@@ -90,7 +50,6 @@ local M = {
 				disable_filetype = { "TelescopePrompt", "spectre_panel", "snacks_picker_input" },
 			})
 
-			-- Integration with nvim-cmp if available
 			local cmp_status_ok, cmp = pcall(require, "cmp")
 			if cmp_status_ok then
 				local cmp_autopairs = require("nvim-autopairs.completion.cmp")

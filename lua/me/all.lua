@@ -16,9 +16,10 @@ map("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse Explorer"
 -- ╭──────────────────────────────╮
 -- │ plugins/toggle-term.lua      │
 -- ╰──────────────────────────────╯
-map("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal (float)" })
-map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Toggle vertical terminal" })
-map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle horizontal terminal" })
+
+map("n", "<leader>tt", "<cmd>lua _FLOAT_TERM_TOGGLE()<CR>", { desc = "Toggle Floating Terminal" })
+map("n", "<leader>tv", "<cmd>lua _VERTICAL_TERM_TOGGLE()<CR>", { desc = "Toggle Vertical Terminal" })
+map("n", "<leader>th", "<cmd>lua _HORIZONTAL_TERM_TOGGLE()<CR>", { desc = "Toggle Horizontal Terminal" })
 map("n", "<leader>tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", { desc = "Toggle Lazygit" })
 map("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal mode to normal mode" })
 
@@ -134,15 +135,26 @@ map("n", "<leader>ut", "<cmd>Twilight<cr>", { desc = "Toggle Twilight" })
 -- ╭──────────────────────────────╮
 -- │ plugins/editing.lua          │
 -- ╰──────────────────────────────╯
-map("n", "<leader>s", function() require("substitute").operator() end, { noremap = true, desc = "Substitute with motion" })
-map("n", "<leader>ss", function() require("substitute").line() end, { noremap = true, desc = "Substitute entire line" })
-map("n", "<leader>S", function() require("substitute").eol() end, { noremap = true, desc = "Substitute to end of line" })
-map("x", "<leader>s", function() require("substitute").visual() end, { noremap = true, desc = "Substitute in visual mode" })
-map("n", "<leader>sx", function() require("substitute.exchange").operator() end, { noremap = true, desc = "Exchange with motion" })
-map("n", "<leader>sxx", function() require("substitute.exchange").line() end, { noremap = true, desc = "Exchange line" })
-map("x", "<leader>X", function() require("substitute.exchange").visual() end, { noremap = true, desc = "Exchange visual selection" })
-map("n", "<leader>sxc", function() require("substitute.exchange").cancel() end, { noremap = true, desc = "Cancel exchange" })
 
+vim.schedule(function()
+  local ok, substitute = pcall(require, "substitute")
+  if not ok then return end
+
+  vim.keymap.set("n", "<leader>v", function()
+    substitute.operator()
+  end, { noremap = true, desc = "Substitute with motion" })
+
+  vim.keymap.set("n", "<leader>vv", substitute.line, { noremap = true, desc = "Substitute entire line" })
+  vim.keymap.set("n", "<leader>V", substitute.eol, { noremap = true, desc = "Substitute to end of line" })
+  vim.keymap.set("x", "<leader>v", substitute.visual, { noremap = true, desc = "Substitute visual selection" })
+
+  -- Exchange
+  local exch = require("substitute.exchange")
+  vim.keymap.set("n", "<leader>vx", exch.operator, { noremap = true, desc = "Exchange with motion" })
+  vim.keymap.set("n", "<leader>vxx", exch.line, { noremap = true, desc = "Exchange line" })
+  vim.keymap.set("n", "<leader>vxc", exch.cancel, { noremap = true, desc = "Cancel exchange" })
+  vim.keymap.set("x", "<leader>X", exch.visual, { noremap = true, desc = "Exchange visual" })
+end)
 -- 
 
 -- ╭──────────────────────────────╮

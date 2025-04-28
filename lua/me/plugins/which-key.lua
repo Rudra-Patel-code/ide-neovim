@@ -8,7 +8,7 @@ return {
 			plugins = {
 				marks = true,
 				registers = true,
-				spelling = { enabled = true, suggestions = 20 },
+				spelling = { enabled = true, suggestions = 20 } ,
 				presets = {
 					operators = true,
 					motions = true,
@@ -79,9 +79,9 @@ return {
 				n = { "<cmd>tabn<CR>", "Go to next tab" },
 				p = { "<cmd>tabp<CR>", "Go to previous tab" },
 				f = { "<cmd>tabnew %<CR>", "Open current buffer in new tab" },
-				t = { "<cmd>ToggleTerm<CR>", "Toggle terminal (float)" },
-				v = { "<cmd>ToggleTerm direction=vertical<CR>", "Toggle vertical terminal" },
-				h = { "<cmd>ToggleTerm direction=horizontal<CR>", "Toggle horizontal terminal" },
+				t = { "<cmd>lua _FLOAT_TERM_TOGGLE()<CR>", "Toggle terminal (float)" },
+				v = { "<cmd>lua _VERTICAL_TERM_TOGGLE()<CR>", "Toggle vertical terminal" },
+				h = { "<cmd>lua _HORIZONTAL_TERM_TOGGLE()<CR>", "Toggle horizontal terminal" },
 				g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Toggle Lazygit" },
 			},
 		}, { prefix = "<leader>" })
@@ -201,7 +201,7 @@ return {
 				t = { "<cmd>Telescope lsp_type_definitions<cr>", "LSP Type Definitions" },
 				f = { "<cmd>FormatWrite<cr>", "Format & Save" },
 			},
-		}, { prefix = "<leader>" })
+		}, { prefix = "<leader>", mode = "n" })
 
 		-- Trouble
 		wk.register({
@@ -283,161 +283,44 @@ return {
 			}, { prefix = "<leader>" })
 		end
 
-		-- Substitute/Editing
-		wk.register({
-			s = {
-				name = "Substitute",
-				s = {
-					function()
-						require("substitute").line()
-					end,
-					"Substitute entire line",
-				},
-				S = {
-					function()
-						require("substitute").eol()
-					end,
-					"Substitute to end of line",
-				},
-				x = {
-					function()
-						require("substitute.exchange").operator()
-					end,
-					"Exchange with motion",
-				},
-				xx = {
-					function()
-						require("substitute.exchange").line()
-					end,
-					"Exchange line",
-				},
-				xc = {
-					function()
-						require("substitute.exchange").cancel()
-					end,
-					"Cancel exchange",
-				},
-			},
-		}, { prefix = "<leader>", mode = "n" })
-
-		wk.register({
-			s = {
-				function()
-					require("substitute").visual()
-				end,
-				"Substitute in visual mode",
-			},
-			X = {
-				function()
-					require("substitute.exchange").visual()
-				end,
-				"Exchange visual selection",
-			},
-		}, { prefix = "<leader>", mode = "x" })
-
 		-- Git
 		wk.register({
-			["]h"] = {
-				function()
-					require("gitsigns").next_hunk()
-				end,
-				"Next Hunk",
-			},
-			["[h"] = {
-				function()
-					require("gitsigns").prev_hunk()
-				end,
-				"Previous Hunk",
-			},
 			h = {
-				name = "Git",
-				s = {
-					function()
-						require("gitsigns").stage_hunk()
-					end,
-					"Stage Hunk",
-				},
-				r = {
-					function()
-						require("gitsigns").reset_hunk()
-					end,
-					"Reset Hunk",
-				},
-				S = {
-					function()
-						require("gitsigns").stage_buffer()
-					end,
-					"Stage Buffer",
-				},
-				R = {
-					function()
-						require("gitsigns").reset_buffer()
-					end,
-					"Reset Buffer",
-				},
-				u = {
-					function()
-						require("gitsigns").undo_stage_hunk()
-					end,
-					"Undo Stage Hunk",
-				},
-				p = {
-					function()
-						require("gitsigns").preview_hunk()
-					end,
-					"Preview Hunk",
-				},
-				b = {
-					function()
-						require("gitsigns").blame_line({ full = true })
-					end,
-					"Blame Line (Full)",
-				},
-				B = {
-					function()
-						require("gitsigns").toggle_current_line_blame()
-					end,
-					"Toggle Blame Line",
-				},
-				d = {
-					function()
-						require("gitsigns").diffthis()
-					end,
-					"Diff This",
-				},
-				D = {
-					function()
-						require("gitsigns").diffthis("~")
-					end,
-					"Diff This ~",
-				},
+				name = "+gitsigns",
+				["]"] = { "]h", "Next Hunk" },
+				["["] = { "[h", "Previous Hunk" },
+				s = { "<leader>hs", "Stage Hunk" },
+				r = { "<leader>hr", "Reset Hunk" },
+				S = { "<leader>hS", "Stage Buffer" },
+				R = { "<leader>hR", "Reset Buffer" },
+				u = { "<leader>hu", "Undo Stage Hunk" },
+				p = { "<leader>hp", "Preview Hunk" },
+				b = { "<leader>hb", "Blame Line (Full)" },
+				B = { "<leader>hB", "Toggle Blame Line" },
+				d = { "<leader>hd", "Diff This" },
+				D = { "<leader>hD", "Diff This ~" },
 			},
-		}, { prefix = "<leader>", mode = "n" })
+		}, { prefix = "<leader>" })
 
 		wk.register({
 			h = {
-				s = {
-					function()
-						require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-					end,
-					"Stage Hunk",
-				},
-				r = {
-					function()
-						require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-					end,
-					"Reset Hunk",
-				},
+				name = "+gitsigns",
+				s = { "<leader>hs", "Stage Hunk (Visual)" },
+				r = { "<leader>hr", "Reset Hunk (Visual)" },
 			},
-		}, { prefix = "<leader>", mode = "v" })
+		}, { mode = "v", prefix = "<leader>" })
 
+		wk.register({
+			h = {
+				name = "+gitsigns",
+				["]"] = { "]h", "Next Hunk" },
+				["["] = { "[h", "Previous Hunk" },
+			},
+		})
+
+		-- For the visual/operator pending mode mapping
 		wk.register({
 			ih = { ":<C-U>Gitsigns select_hunk<CR>", "Select Hunk" },
 		}, { mode = { "o", "x" } })
-
-		-- Terminal mode
-		wk.register({
-			["<Esc>"] = { [[<C-\><C-n>]], "Terminal mode to normal mode" },
-		}, { mode = "t" })
 	end,
 }

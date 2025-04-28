@@ -2,10 +2,8 @@ require("me.launch")
 require("me.core.options")
 require("me.core.keymaps")
 
-
 spec("me.plugins.extras")
 spec("me.plugins.mini")
-
 
 spec("me.plugins.mini-animate")
 spec("me.plugins.indentscope")
@@ -25,11 +23,11 @@ spec("me.plugins.telescope")
 spec("me.plugins.zen-mode")
 spec("me.plugins.twilight")
 spec("me.plugins.modes")
+spec("me.plugins.flash-leap")
 spec("me.plugins.editing")
 spec("me.plugins.debug")
 spec("me.plugins.git")
 spec("me.plugins.todo")
-spec("me.plugins.flash-leap")
 spec("me.plugins.formatting")
 spec("me.plugins.projects")
 spec("me.plugins.auto-session")
@@ -43,7 +41,6 @@ spec("me.lsp.lsp-signature")
 spec("me.lsp.cmp")
 spec("me.lsp.lsp-ui")
 spec("me.lsp.treesitter")
-
 
 require("me.all")
 require("me.lazy")

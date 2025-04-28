@@ -13,7 +13,7 @@ local M = {
       animate.setup({
         cursor = {
           enable = true,
-          timing = animate.gen_timing.linear({ duration = 70, unit = "total" }),
+          timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
         },
         scroll = {
           enable = scroll_enabled,
@@ -39,6 +39,7 @@ local M = {
       end)
     end
 
+    
     -- Initial animate setup
     reapply_animate()
 
@@ -71,6 +72,7 @@ local M = {
         end
       end
     end, vim.api.nvim_create_namespace("mini.animate.scroll_toggle"))
+
 
     -- Statusline global flag: vim.g.scroll_animate_disabled
   end,
